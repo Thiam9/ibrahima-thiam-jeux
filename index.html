@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Mon jeux</title>
+
+  <link href="./bootstrap.css" rel="stylesheet" />
+  <link href="jeux.css" rel="stylesheet" />
+
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
+  <script src="./jquery.js"></script>
+
+
+</head>
+
+<body>
+  <nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav navbar-right ">
+          <li>
+            <a href="https://github.com/" target="_blank">
+              <i class="fa fa-github"></i>
+              Github
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/ibrahima-thiam-047b0314b/" target="_blank">
+              <i class="fa fa-linkedin"></i>
+              Linkedin
+            </a>
+          </li>
+          <li>
+            <a href="https://codepen.io/thiam9" target="_blank">
+              <i class="fa fa-codepen"></i>
+              Codepen
+            </a>
+          </li>
+        </ul>
+
+
+
+      </div>
+    </div>
+  </nav>
+
+  <div id="SplashScreen" class="main" style="background-image: url('./img1.jpg') ; position: absolute; z-index: 2;">
+
+
+
+    <div class="cover black" data-color="black"></div>
+
+
+
+    <div class="container">
+      <h1 class="logo cursive" style="letter-spacing: 0.2rem;">
+
+
+        <a href="" class="typewrite" data-period="2000" data-type='[ "Bienvenue dans mon jeux", "Thiam Ibrahima"]'>
+          <span class="wrap"></span>
+        </a>
+      </h1>
+
+      <div class="content">
+        <h4 class="motto" style="line-height: 1.9em;"> Ce jeux est un projet que j'ai réalisé
+          pour ma formation Full
+          stack JS à l'ifocop de
+          paris.</br>
+          Le code est entiérement écrit en Javascript. Le but du jeux est simple, casse les briques pour faire
+          apparaitre mes compétences cachées derriéres les briques.</h4>
+        <div class="subscribe">
+          <h5 class="info-text" style="letter-spacing: 0.3rem;">
+            Utilise les flèches du clavier pour bouger la raquette.
+            Bonne chance et fais gaffe de tu n'a que 3 vies.
+          </h5>
+
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm6-6 col-sm-offset-3 ">
+              <button id="StartButton" type="button" class="btn btn-danger btn-fill" style="margin-right:50px;">Jouer
+                à mon jeux </button>
+              <button type=" button" class="btn btn-danger btn-fill"> <a href="https://www.thiamibrahima.dev/"
+                  target="_blank">Voir mon site</a></button>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="container">
+      Copyright <i class="fa fa-heart heart"></i> <a href="https://www.thiamibrahima.dev/"></a>Ibrahima Thiam </a>.
+      Aka
+      Lamine Thiam <a href="https://www.thiamibrahima.dev/" target="_blank">Ici.</a>
+    </div>
+  </div>
+  </div>
+
+  <canvas id="monCanvas" style="display: none; position: relative; z-index: 2;" width="1500" height="640">
+  </canvas>
+
+  <img style='position: absolute; right: 350px; top: 50px; z-index: 1; width: 70px; height: 70px;' src='./html.jpg'>
+  <img style='position: absolute; left: 450px; top: 70px; z-index: 1; width: 70px; height: 70px;' class='imgComp'
+    src='./ajax.png'>
+  <img style='position: absolute; left: 550px; top: 150px; z-index: 1; width: 70px; height: 70px;' class='imgComp'
+    src='./angular.png'>
+  <img style='position: absolute; left: 300px; top: 100px; z-index: 1; width: 70px; height: 70px;' class='imgComp'
+    src='./css3.png'>
+  <img style='position: absolute; left: 500px; top: 200px; z-index: 1; width: 100px; height: 100px;' class='imgComp'
+    src='./express.png'>
+  <img style='position: absolute; left: 500px; top: 80px; z-index: 1; width: 100px; height: 100px;' class='imgComp'
+    src='./Firebase.png'>
+  <img style='position: absolute; left: 700px; top: 60px; z-index: 1; width: 100px; height: 100px;' class='imgComp'
+    src='./mongodb.png'>
+  <img style='position: absolute; left: 1000px; top: 200px; z-index: 1; width: 100px; height: 100px;' class='imgComp'
+    src='./node.png'>
+  <img style='position: absolute; left: 500px; top: 80px; z-index: 1; width: 100px; height: 100px;' class='imgComp'
+    src='./Firebase.png'>
+  <img style='position: absolute; left:800px; top: 80px; z-index: 1; width: 100px; height: 100px;' class='imgComp'
+    src='./react.png'>
+
+  <script src="./jeux.js"></script>
+
+  <script>
+
+    var TxtType = function (el, toRotate, period) {
+      this.toRotate = toRotate;
+      this.el = el;
+      this.loopNum = 0;
+      this.period = parseInt(period, 10) || 2000;
+      this.txt = '';
+      this.tick();
+      this.isDeleting = false;
+    };
+
+    TxtType.prototype.tick = function () {
+      var i = this.loopNum % this.toRotate.length;
+      var fullTxt = this.toRotate[i];
+
+      if (this.isDeleting) {
+        this.txt = fullTxt.substring(0, this.txt.length - 1);
+      } else {
+        this.txt = fullTxt.substring(0, this.txt.length + 1);
+      }
+
+      this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+      var that = this;
+      var delta = 200 - Math.random() * 100;
+
+      if (this.isDeleting) { delta /= 2; }
+
+      if (!this.isDeleting && this.txt === fullTxt) {
+        delta = this.period;
+        this.isDeleting = true;
+      } else if (this.isDeleting && this.txt === '') {
+        this.isDeleting = false;
+        this.loopNum++;
+        delta = 500;
+      }
+
+      setTimeout(function () {
+        that.tick();
+      }, delta);
+    };
+
+    window.onload = function () {
+      var elements = document.getElementsByClassName('typewrite');
+      for (var i = 0; i < elements.length; i++) {
+        var toRotate = elements[i].getAttribute('data-type');
+        var period = elements[i].getAttribute('data-period');
+        if (toRotate) {
+          new TxtType(elements[i], JSON.parse(toRotate), period);
+        }
+      }
+
+      var css = document.createElement("style");
+      css.type = "text/css";
+      css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+      document.body.appendChild(css);
+    };
+  </script>
+
+
+</body>
+
+
+</html>
